@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bylmo | Todo para tu hogar</title>
+    <link rel="icon" type="image/png" href="assets/bylmo-icon.png" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-top shell">
+        <button class="brand" data-nav="home" aria-label="Ir al inicio">
+          <img class="brand-logo" src="assets/bylmo-logo.png" alt="Bylmo" />
+        </button>
+
+        <form class="search" id="site-search">
+          <input type="search" placeholder="¿Qué necesitas para tu hogar?" aria-label="Buscar productos" />
+          <button class="search-button" type="submit" aria-label="Buscar">
+            <span class="icon" data-icon="search"></span>
+          </button>
+        </form>
+
+        <div class="header-actions">
+          <button class="header-action" type="button">
+            <span class="icon" data-icon="user"></span>
+            <span>Mi cuenta</span>
+          </button>
+          <button class="header-action cart-action" type="button" data-nav="cart">
+            <span class="cart-icon-wrap">
+              <span class="icon" data-icon="cart"></span>
+              <span class="cart-badge" id="cart-badge">3</span>
+            </span>
+            <span>Carrito</span>
+          </button>
+        </div>
+      </div>
+
+      <nav class="main-nav" aria-label="Navegación principal">
+        <div class="shell nav-inner">
+          <button data-nav="home">Inicio</button>
+          <button data-nav="category">Decoración</button>
+          <button data-nav="product">Producto demo</button>
+          <button data-nav="cart">Carrito</button>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="page is-active" id="page-home" aria-label="Inicio">
+        <section class="home-hero">
+          <div class="shell hero-grid">
+            <div class="hero-copy">
+              <h1>Transforma tu hogar<br />en el lugar <span>que amas</span></h1>
+              <p>Descubre productos de calidad, diseño y funcionalidad para cada espacio de tu casa. En Bylmo, tu hogar está siempre a un clic.</p>
+              <div class="hero-actions">
+                <button class="btn primary" data-nav="category">Ver productos</button>
+                <button class="btn ghost" data-nav="product">Producto demo</button>
+              </div>
+            </div>
+            <div class="hero-photo">
+              <img src="assets/hero-home.png" alt="Sala luminosa con sofá modular, mesa de centro y plantas" />
+            </div>
+          </div>
+        </section>
+
+        <section class="shell quick-categories" aria-label="Accesos de la beta">
+          <button class="category-tile" type="button" data-nav="category">
+            <span class="tile-icon"><span class="icon" data-icon="plant"></span></span>
+            <span><strong>Catálogo beta</strong><small>Decoración disponible</small></span>
+            <span class="tile-arrow"><span class="icon" data-icon="chevron-right"></span></span>
+          </button>
+          <button class="category-tile" type="button" data-nav="product">
+            <span class="tile-icon"><span class="icon" data-icon="sofa"></span></span>
+            <span><strong>Producto demo</strong><small>Silla decorativa</small></span>
+            <span class="tile-arrow"><span class="icon" data-icon="chevron-right"></span></span>
+          </button>
+          <button class="category-tile" type="button" data-nav="cart">
+            <span class="tile-icon"><span class="icon" data-icon="cart"></span></span>
+            <span><strong>Carrito</strong><small>Checkout optimizado</small></span>
+            <span class="tile-arrow"><span class="icon" data-icon="chevron-right"></span></span>
+          </button>
+        </section>
+
+        <section class="shell home-products">
+          <div class="section-heading">
+            <h2>Los más vendidos</h2>
+            <button class="text-button" data-nav="category">Ver todos</button>
+          </div>
+          <div class="home-products-grid">
+            <div class="cards-row" id="home-products"></div>
+            <aside class="trust-card compact">
+              <div><span class="icon" data-icon="truck"></span><span><strong>Envíos rápidos</strong><small>a todo Colombia</small></span></div>
+              <div><span class="icon" data-icon="shield"></span><span><strong>Compra segura</strong><small>y protegida</small></span></div>
+              <div><span class="icon" data-icon="award"></span><span><strong>Calidad garantizada</strong><small>en todos los productos</small></span></div>
+              <div><span class="icon" data-icon="headphones"></span><span><strong>Atención cercana</strong><small>y personalizada</small></span></div>
+            </aside>
+          </div>
+        </section>
+
+        <section class="shell inspiration-row">
+          <div class="ideas-panel">
+            <div class="section-heading small">
+              <h2>Inspírate para tu hogar</h2>
+              <button class="text-button">Ver más ideas</button>
+            </div>
+            <div class="idea-list">
+              <article>
+                <img src="assets/deco-vase.png" alt="Florero decorativo sobre libros" />
+                <div>
+                  <h3>Tendencias en decoración 2026</h3>
+                  <p>Renueva tus espacios con estilo y personalidad.</p>
+                  <button>Leer más</button>
+                </div>
+              </article>
+              <article>
+                <img src="assets/hero-category.png" alt="Cocina y repisa minimalista" />
+                <div>
+                  <h3>Cocinas pequeñas, grandes ideas</h3>
+                  <p>Soluciones prácticas para aprovechar cada rincón.</p>
+                  <button>Leer más</button>
+                </div>
+              </article>
+              <article>
+                <img src="assets/product-shelf.png" alt="Estante organizador con cajas" />
+                <div>
+                  <h3>Orden que se ve bien</h3>
+                  <p>Ideas simples para mantener todo en su lugar.</p>
+                  <button>Leer más</button>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <aside class="testimonial">
+            <h2>Lo que dicen nuestros clientes</h2>
+            <blockquote>“Me encantó la calidad de los productos y lo rápido que llegó mi pedido. Bylmo se ha convertido en mi tienda favorita para todo lo del hogar.”</blockquote>
+            <div class="customer">
+              <span class="avatar">M</span>
+              <span><strong>María Fernanda G.</strong><small>Bogotá, Colombia</small></span>
+            </div>
+            <div class="stars" aria-label="5 estrellas">★★★★★</div>
+          </aside>
+        </section>
+      </section>
+
+      <section class="page" id="page-category" aria-label="Decoración para el hogar">
+        <section class="category-hero">
+          <div class="shell category-hero-grid">
+            <div class="breadcrumbs">Inicio <span>›</span> Decoración <span>›</span> <strong>Decoración para el hogar</strong></div>
+            <div class="category-copy">
+              <h1>Decoración para el hogar</h1>
+              <p>Detalles que transforman tus espacios y reflejan tu estilo. Encuentra accesorios, figuras, velas, plantas y más.</p>
+              <strong>342 productos encontrados</strong>
+            </div>
+            <img src="assets/hero-category.png" alt="Mueble decorado con florero, velas y cuadro" />
+          </div>
+        </section>
+
+        <div class="shell service-strip">
+          <div><span class="icon" data-icon="truck"></span><span><strong>Envíos rápidos</strong><small>a todo Colombia</small></span></div>
+          <div><span class="icon" data-icon="shield"></span><span><strong>Compra segura</strong><small>y protegida</small></span></div>
+          <div><span class="icon" data-icon="award"></span><span><strong>Calidad garantizada</strong><small>en todos los productos</small></span></div>
+          <div><span class="icon" data-icon="headphones"></span><span><strong>Devoluciones fáciles</strong><small>y sin complicaciones</small></span></div>
+          <div><span class="icon" data-icon="credit-card"></span><span><strong>Pagos 100% seguros</strong><small>con múltiples medios</small></span></div>
+        </div>
+
+        <section class="shell catalog-layout">
+          <aside class="filters">
+            <div class="filters-head">
+              <h2>Filtrar productos</h2>
+              <button type="button" id="clear-filters">Limpiar filtros</button>
+            </div>
+            <div class="filter-group">
+              <button class="filter-title" type="button">Precio <span class="icon" data-icon="chevron-up"></span></button>
+              <div class="range-track"><span></span></div>
+              <div class="range-values"><span>$10.000</span><span>$250.000+</span></div>
+            </div>
+            <div class="filter-group">
+              <h3>Material</h3>
+              <label><input type="checkbox" data-filter="ceramica" /> Cerámica <span>(84)</span></label>
+              <label><input type="checkbox" data-filter="madera" /> Madera <span>(67)</span></label>
+              <label><input type="checkbox" data-filter="metal" /> Metal <span>(56)</span></label>
+              <label><input type="checkbox" data-filter="vidrio" /> Vidrio <span>(38)</span></label>
+              <label><input type="checkbox" data-filter="textil" /> Textil <span>(29)</span></label>
+              <button class="more-link" type="button">Ver más +</button>
+            </div>
+            <div class="filter-group">
+              <h3>Color</h3>
+              <div class="swatches">
+                <button class="swatch teal" type="button" aria-label="Verde petróleo"></button>
+                <button class="swatch coral" type="button" aria-label="Coral"></button>
+                <button class="swatch olive" type="button" aria-label="Verde oliva"></button>
+                <button class="swatch stone" type="button" aria-label="Piedra"></button>
+                <button class="swatch white" type="button" aria-label="Blanco"></button>
+              </div>
+              <button class="more-link" type="button">Ver más +</button>
+            </div>
+            <div class="filter-group">
+              <h3>Envío</h3>
+              <label><input type="checkbox" /> Envío rápido <span>(198)</span></label>
+              <label><input type="checkbox" /> Envío gratis <span>(112)</span></label>
+            </div>
+          </aside>
+
+          <div class="catalog-main">
+            <div class="catalog-toolbar">
+              <div></div>
+              <label>Ordenar por:
+                <select id="sort-products" aria-label="Ordenar productos">
+                  <option>Más relevantes</option>
+                  <option>Menor precio</option>
+                  <option>Mayor precio</option>
+                  <option>Mejor valorados</option>
+                </select>
+              </label>
+            </div>
+            <div class="catalog-grid" id="catalog-products"></div>
+            <div class="pagination" aria-label="Paginación">
+              <button class="is-current">1</button>
+              <button>2</button>
+              <button>3</button>
+              <button>4</button>
+              <button>5</button>
+              <span>...</span>
+              <button>12</button>
+              <button><span class="icon" data-icon="chevron-right"></span></button>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <section class="page" id="page-product" aria-label="Detalle de producto">
+        <section class="shell product-page">
+          <div class="breadcrumbs product-breadcrumbs">Inicio <span>›</span> Decoración <span>›</span> Muebles <span>›</span> Sillas y poltronas <span>›</span> <strong>Silla decorativa Nórdica Lino Beige</strong></div>
+
+          <div class="product-layout">
+            <div class="product-media">
+              <div class="thumbs" id="product-thumbs">
+                <button class="is-active"><img src="assets/chair-thumb-1.png" alt="Silla vista frontal" /></button>
+                <button><img src="assets/chair-thumb-2.png" alt="Silla vista lateral" /></button>
+                <button><img src="assets/chair-thumb-3.png" alt="Silla vista diagonal" /></button>
+                <button><img src="assets/chair-thumb-4.png" alt="Silla vista posterior" /></button>
+                <button><img src="assets/chair-thumb-5.png" alt="Detalle de silla" /></button>
+              </div>
+              <div class="main-photo">
+                <span class="discount-badge">-15%</span>
+                <button class="photo-nav left" aria-label="Imagen anterior"><span class="icon" data-icon="chevron-left"></span></button>
+                <img id="main-product-image" src="assets/chair-main.png" alt="Silla decorativa nórdica lino beige" />
+                <button class="photo-nav right" aria-label="Imagen siguiente"><span class="icon" data-icon="chevron-right"></span></button>
+                <button class="fullscreen" aria-label="Ver grande"><span class="icon" data-icon="expand"></span></button>
+              </div>
+            </div>
+
+            <div class="product-info">
+              <h1>Silla decorativa Nórdica<br />Lino Beige</h1>
+              <div class="rating-line"><span class="stars">★★★★★</span><span>(128)</span><span>•</span><span>Marca: Bylmo</span></div>
+              <div class="price-line">
+                <strong>$459.900</strong>
+                <del>$539.900</del>
+                <span>Ahorra $80.000</span>
+              </div>
+              <p class="product-summary">Diseño escandinavo que aporta calidez y elegancia a cualquier espacio del hogar.</p>
+
+              <div class="option-group">
+                <h3>Color: <span>Lino Beige</span></h3>
+                <div class="option-swatches">
+                  <button class="is-selected beige" aria-label="Lino beige"></button>
+                  <button class="gray" aria-label="Gris"></button>
+                  <button class="olive" aria-label="Verde oliva"></button>
+                </div>
+              </div>
+
+              <div class="option-group">
+                <h3>Material: <span>Tela lino</span></h3>
+                <div class="pill-options">
+                  <button class="is-selected">Tela lino</button>
+                  <button>Terciopelo</button>
+                </div>
+              </div>
+
+              <div class="buy-row">
+                <label>Cantidad:</label>
+                <div class="qty-control" data-product-qty>
+                  <button type="button" data-qty="minus">−</button>
+                  <span>1</span>
+                  <button type="button" data-qty="plus">+</button>
+                </div>
+                <button class="btn primary add-chair" type="button"><span class="icon" data-icon="cart"></span> Agregar al carrito</button>
+                <button class="btn save" type="button"><span class="icon" data-icon="heart"></span> Guardar</button>
+              </div>
+
+              <div class="accordion">
+                <details open>
+                  <summary>Descripción del producto</summary>
+                  <p>Silla decorativa de estilo nórdico con tapizado en lino suave al tacto y patas de madera maciza. Ideal para salas, habitaciones o espacios de lectura.</p>
+                </details>
+                <details>
+                  <summary>Especificaciones</summary>
+                  <p>Medidas: 72 x 68 x 78 cm. Peso recomendado: hasta 120 kg. Ensamble sencillo incluido.</p>
+                </details>
+                <details>
+                  <summary>Cuidados y recomendaciones</summary>
+                  <p>Limpiar con paño seco o ligeramente húmedo. Evitar exposición directa prolongada al sol.</p>
+                </details>
+              </div>
+            </div>
+
+            <aside class="trust-card product-trust">
+              <div><span class="icon" data-icon="truck"></span><span><strong>Envíos rápidos</strong><small>a todo Colombia</small></span></div>
+              <div><span class="icon" data-icon="return"></span><span><strong>Devoluciones fáciles</strong><small>30 días de garantía</small></span></div>
+              <div><span class="icon" data-icon="shield"></span><span><strong>Compra segura</strong><small>y protegida</small></span></div>
+              <div><span class="icon" data-icon="credit-card"></span><span><strong>Paga como prefieras</strong><small>Tarjeta, PSE o contra entrega</small></span></div>
+            </aside>
+          </div>
+
+          <div class="below-product">
+            <aside class="review-score">
+              <strong>4.8</strong>
+              <span class="stars">★★★★★</span>
+              <small>(128 reseñas)</small>
+              <button>Ver todas las reseñas</button>
+            </aside>
+            <article class="review-card">
+              <div><span class="stars">★★★★★</span><small>Hace 2 días</small></div>
+              <p>“Muy cómoda y fácil de armar. El color es tal cual como las fotos, quedó perfecta en mi sala.”</p>
+              <small><strong>María Fernanda G.</strong> <span class="verified">Compra verificada</span></small>
+            </article>
+          </div>
+
+          <section class="related-section">
+            <h2>Productos relacionados</h2>
+            <div class="related-grid" id="related-products"></div>
+          </section>
+        </section>
+      </section>
+
+      <section class="page" id="page-cart" aria-label="Carrito de compra">
+        <section class="shell checkout-page">
+          <div class="checkout-top">
+            <div>
+              <h1>Tu carrito</h1>
+              <p>Revisa tus productos y continua con tu compra.</p>
+            </div>
+            <div class="checkout-steps">
+              <span class="is-active"><small>Carrito</small></span>
+              <span><small>Información</small></span>
+              <span><small>Envío</small></span>
+              <span><small>Pago</small></span>
+            </div>
+          </div>
+
+          <div class="checkout-layout">
+            <div class="cart-column">
+              <div class="cart-table" id="cart-table"></div>
+              <div class="coupon-row">
+                <span class="icon" data-icon="tag"></span>
+                <strong>¿Tienes un código de descuento?</strong>
+                <input type="text" placeholder="Ingresa tu código" />
+                <button class="btn primary small">Aplicar</button>
+              </div>
+            </div>
+
+            <form class="checkout-form">
+              <fieldset>
+                <legend>1. Contacto</legend>
+                <div class="two-col">
+                  <input type="text" placeholder="Nombre completo" />
+                  <input type="email" placeholder="Correo electrónico" />
+                </div>
+                <div class="phone-field">
+                  <input type="tel" placeholder="Teléfono / Celular (opcional)" />
+                  <span class="icon" data-icon="message"></span>
+                </div>
+                <label class="check-line"><input type="checkbox" /> Quiero recibir novedades y ofertas exclusivas de Bylmo.</label>
+              </fieldset>
+
+              <fieldset>
+                <legend>2. Dirección de envío</legend>
+                <select aria-label="País">
+                  <option>Colombia</option>
+                </select>
+                <div class="two-col">
+                  <select aria-label="Departamento">
+                    <option>Departamento</option>
+                    <option>Cundinamarca</option>
+                    <option>Antioquia</option>
+                    <option>Valle del Cauca</option>
+                  </select>
+                  <input type="text" placeholder="Ciudad" />
+                </div>
+                <div class="two-col">
+                  <input type="text" placeholder="Dirección completa" />
+                  <input type="text" placeholder="Referencia (opcional)" />
+                </div>
+                <label class="check-line"><input type="checkbox" /> Guardar dirección para futuras compras</label>
+              </fieldset>
+
+              <fieldset>
+                <legend>3. Método de entrega</legend>
+                <label class="shipping-option is-selected"><input type="radio" name="shipping" value="9900" checked /> <span class="icon" data-icon="truck"></span><span><strong>Envío estándar</strong><small>3 a 5 días hábiles</small></span><strong>$9.900</strong></label>
+                <label class="shipping-option"><input type="radio" name="shipping" value="16900" /> <span class="icon" data-icon="truck"></span><span><strong>Envío express</strong><small>1 a 2 días hábiles</small></span><strong>$16.900</strong></label>
+                <label class="shipping-option"><input type="radio" name="shipping" value="0" /> <span class="icon" data-icon="store"></span><span><strong>Retiro en tienda</strong><small>Disponible en puntos seleccionados</small></span><strong>Gratis</strong></label>
+              </fieldset>
+            </form>
+
+            <aside class="order-column">
+              <div class="order-summary">
+                <h2>Resumen de tu pedido</h2>
+                <div><span id="subtotal-label">Subtotal (3 productos)</span><strong id="subtotal-value">$175.600</strong></div>
+                <div><span>Envío estándar</span><strong id="shipping-value">$9.900</strong></div>
+                <div><span>Descuento</span><strong class="discount">$0</strong></div>
+                <hr />
+                <div class="total"><span>Total a pagar</span><strong id="total-value">$185.500</strong></div>
+                <small>Impuestos incluidos</small>
+                <div class="summary-benefits">
+                  <div><span class="icon" data-icon="lock"></span><span><strong>Pago 100% seguro</strong><small>Usamos tecnología de cifrado SSL.</small></span></div>
+                  <div><span class="icon" data-icon="truck"></span><span><strong>Envío con seguimiento</strong><small>Te mantendremos informado sobre tu pedido.</small></span></div>
+                  <div><span class="icon" data-icon="headphones"></span><span><strong>Atención personalizada</strong><small>Estamos aquí para ayudarte antes, durante y después de tu compra.</small></span></div>
+                </div>
+              </div>
+
+              <div class="payment-box">
+                <h2>4. Método de pago</h2>
+                <label><input type="radio" name="payment" /> Tarjeta de crédito o débito <span>VISA ●● AMEX</span></label>
+                <label><input type="radio" name="payment" /> PSE - Pagos seguros en línea <span>PSE</span></label>
+                <label><input type="radio" name="payment" /> Mercado Pago <span>MP</span></label>
+                <label><input type="radio" name="payment" /> Addi - Compra ahora, paga después <span>Addi</span></label>
+                <button class="btn primary checkout-button" type="button"><span class="icon" data-icon="lock"></span> Continuar al pago</button>
+                <p>Al continuar aceptas nuestros Términos y condiciones y Política de privacidad.</p>
+              </div>
+            </aside>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="shell footer-grid">
+        <div class="footer-brand">
+          <button class="brand footer-logo" data-nav="home">
+            <img class="brand-logo negative" src="assets/bylmo-logo-negative.png" alt="Bylmo" />
+          </button>
+          <p>Todo para tu hogar, online.<br />Calidad, diseño y confianza<br />en cada elección.</p>
+          <div class="socials">
+            <button aria-label="Instagram"><span class="icon" data-icon="instagram"></span></button>
+            <button aria-label="Facebook"><span class="icon" data-icon="facebook"></span></button>
+            <button aria-label="TikTok"><span class="icon" data-icon="music"></span></button>
+            <button aria-label="YouTube"><span class="icon" data-icon="youtube"></span></button>
+          </div>
+          <small>© 2026 Bylmo. Todos los derechos reservados.</small>
+        </div>
+        <div>
+          <h3>Comprar</h3>
+          <button data-nav="home">Inicio</button>
+          <button data-nav="category">Decoración</button>
+          <button data-nav="product">Producto demo</button>
+          <button data-nav="cart">Carrito</button>
+        </div>
+        <div>
+          <h3>Ayuda</h3>
+          <button>Preguntas frecuentes</button>
+          <button>Envíos y entregas</button>
+          <button>Cambios y devoluciones</button>
+          <button>Métodos de pago</button>
+          <button>Contáctanos</button>
+        </div>
+        <div>
+          <h3>Mi cuenta</h3>
+          <button>Iniciar sesión</button>
+          <button>Mis pedidos</button>
+          <button>Lista de deseos</button>
+          <button>Mis direcciones</button>
+        </div>
+        <div class="newsletter">
+          <h3>Suscríbete y recibe ofertas</h3>
+          <p>Entérate primero de nuestras novedades y promociones exclusivas.</p>
+          <form>
+            <input type="email" placeholder="Tu correo electrónico" />
+            <button type="submit" aria-label="Suscribirme"><span class="icon" data-icon="arrow-right"></span></button>
+          </form>
+          <div class="legal">
+            <button>Términos y condiciones</button>
+            <button>Política de privacidad</button>
+            <button>Política de cookies</button>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="app.js"></script>
+  </body>
+</html>

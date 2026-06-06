@@ -1,0 +1,7 @@
+screenshots/
+manual-preview/
+gh-auth.*
+ChatGPT Image*.png
+*.log
+.DS_Store
+Thumbs.db
