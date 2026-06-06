@@ -276,7 +276,6 @@ function setupFilters() {
   const checks = [...document.querySelectorAll(".filters input[data-filter]")];
   const shippingChecks = [...document.querySelectorAll(".filters input[data-shipping]")];
   const looseShippingChecks = [...document.querySelectorAll(".filters .filter-group:last-child input[type='checkbox']:not([data-shipping])")];
-  const colorButtons = [...document.querySelectorAll(".swatch")];
   const priceRange = document.getElementById("price-filter");
   const priceCurrent = document.getElementById("price-current");
   const clear = document.getElementById("clear-filters");
@@ -288,12 +287,6 @@ function setupFilters() {
     shippingChecks.push(check);
   });
 
-  colorButtons.forEach((button) => {
-    if (!button.dataset.color) {
-      button.dataset.color = [...button.classList].find((className) => className !== "swatch" && className !== "is-selected") || "";
-    }
-  });
-
   function updatePriceLabel() {
     if (!priceRange || !priceCurrent) return;
     const value = Number(priceRange.value);
@@ -303,28 +296,20 @@ function setupFilters() {
   function applyFilters() {
     const activeMaterials = checks.filter((check) => check.checked).map((check) => check.dataset.filter);
     const activeShipping = shippingChecks.filter((check) => check.checked).map((check) => check.dataset.shipping);
-    const activeColors = colorButtons.filter((button) => button.classList.contains("is-selected")).map((button) => button.dataset.color);
     const selectedMaxPrice = priceRange ? Number(priceRange.value) : Infinity;
 
     document.querySelectorAll("#catalog-products .product-card").forEach((card) => {
       const shippingTags = (card.dataset.shipping || "").split(" ").filter(Boolean);
       const materialOk = activeMaterials.length === 0 || activeMaterials.includes(card.dataset.material);
       const shippingOk = activeShipping.length === 0 || activeShipping.some((shipping) => shippingTags.includes(shipping));
-      const colorOk = activeColors.length === 0 || activeColors.includes(card.dataset.color);
       const priceOk = Number(card.dataset.price) <= selectedMaxPrice;
-      const visible = materialOk && shippingOk && colorOk && priceOk;
+      const visible = materialOk && shippingOk && priceOk;
       card.style.display = visible ? "" : "none";
     });
   }
 
   checks.forEach((check) => check.addEventListener("change", applyFilters));
   shippingChecks.forEach((check) => check.addEventListener("change", applyFilters));
-  colorButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      button.classList.toggle("is-selected");
-      applyFilters();
-    });
-  });
   if (priceRange) {
     priceRange.addEventListener("input", () => {
       updatePriceLabel();
@@ -335,7 +320,6 @@ function setupFilters() {
   clear.addEventListener("click", () => {
     checks.forEach((check) => { check.checked = false; });
     shippingChecks.forEach((check) => { check.checked = false; });
-    colorButtons.forEach((button) => button.classList.remove("is-selected"));
     if (priceRange) priceRange.value = priceRange.max;
     updatePriceLabel();
     applyFilters();
