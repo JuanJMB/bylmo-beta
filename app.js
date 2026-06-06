@@ -59,6 +59,23 @@ const catalogProducts = [
   { id: "clock", name: "Reloj de pared", detail: "minimalista", price: 62900, oldPrice: 69900, rating: 37, image: "assets/deco-clock.png", badge: "-10%", sale: true, material: "madera" }
 ];
 
+const catalogProductFilters = {
+  vase: { color: "stone", shipping: ["fast", "free"] },
+  candle: { color: "coral", shipping: ["fast"] },
+  frame: { color: "olive", shipping: ["free"] },
+  plant2: { color: "teal", shipping: ["fast"] },
+  mirror: { color: "stone", shipping: ["free"] },
+  tray: { color: "white", shipping: ["fast", "free"] },
+  candlesticks: { color: "coral", shipping: ["fast"] },
+  figure: { color: "teal", shipping: ["fast"] },
+  basket: { color: "olive", shipping: ["free"] },
+  clock: { color: "white", shipping: ["fast", "free"] }
+};
+
+catalogProducts.forEach((product, index) => {
+  Object.assign(product, { index }, catalogProductFilters[product.id]);
+});
+
 const relatedProducts = [
   { id: "armchair", name: "Poltrona escandinava", detail: "Lino gris", price: 519900, rating: 96, image: "assets/related-armchair.png" },
   { id: "side-table", name: "Mesa auxiliar", detail: "madera clara", price: 329900, rating: 74, image: "assets/related-table.png" },
@@ -88,7 +105,7 @@ function renderProductCard(product, mode = "home") {
   const hasBadge = product.badge ? `<span class="badge ${product.sale ? "sale" : ""}">${product.badge}</span>` : "";
   const price = `<div class="price"><strong>${money.format(product.price)}</strong>${product.oldPrice ? `<del>${money.format(product.oldPrice)}</del>` : ""}</div>`;
   return `
-    <article class="product-card" data-material="${product.material || ""}" data-price="${product.price}">
+    <article class="product-card" data-index="${product.index ?? 0}" data-material="${product.material || ""}" data-color="${product.color || ""}" data-shipping="${(product.shipping || []).join(" ")}" data-price="${product.price}" data-rating="${product.rating || 0}">
       ${hasBadge}
       ${mode === "catalog" ? `<button class="heart-button" type="button" aria-label="Guardar ${product.name}"><span class="icon" data-icon="heart"></span></button>` : ""}
       <button class="card-click" type="button" ${mode === "catalog" ? 'data-nav="product"' : ""}>
@@ -284,31 +301,84 @@ function setupCartInteractions() {
 
 function setupFilters() {
   const checks = [...document.querySelectorAll(".filters input[data-filter]")];
+  const shippingChecks = [...document.querySelectorAll(".filters input[data-shipping]")];
+  const looseShippingChecks = [...document.querySelectorAll(".filters .filter-group:last-child input[type='checkbox']:not([data-shipping])")];
+  const colorButtons = [...document.querySelectorAll(".swatch")];
+  const priceRange = document.getElementById("price-filter");
+  const priceCurrent = document.getElementById("price-current");
   const clear = document.getElementById("clear-filters");
   const sort = document.getElementById("sort-products");
+  const maxPrice = priceRange ? Number(priceRange.max) : Infinity;
+
+  looseShippingChecks.forEach((check, index) => {
+    check.dataset.shipping = index === 0 ? "fast" : "free";
+    shippingChecks.push(check);
+  });
+
+  colorButtons.forEach((button) => {
+    if (!button.dataset.color) {
+      button.dataset.color = [...button.classList].find((className) => className !== "swatch" && className !== "is-selected") || "";
+    }
+  });
+
+  function updatePriceLabel() {
+    if (!priceRange || !priceCurrent) return;
+    const value = Number(priceRange.value);
+    priceCurrent.textContent = value >= maxPrice ? `${money.format(value)}+` : money.format(value);
+  }
 
   function applyFilters() {
-    const active = checks.filter((check) => check.checked).map((check) => check.dataset.filter);
+    const activeMaterials = checks.filter((check) => check.checked).map((check) => check.dataset.filter);
+    const activeShipping = shippingChecks.filter((check) => check.checked).map((check) => check.dataset.shipping);
+    const activeColors = colorButtons.filter((button) => button.classList.contains("is-selected")).map((button) => button.dataset.color);
+    const selectedMaxPrice = priceRange ? Number(priceRange.value) : Infinity;
+
     document.querySelectorAll("#catalog-products .product-card").forEach((card) => {
-      const visible = active.length === 0 || active.includes(card.dataset.material);
+      const shippingTags = (card.dataset.shipping || "").split(" ").filter(Boolean);
+      const materialOk = activeMaterials.length === 0 || activeMaterials.includes(card.dataset.material);
+      const shippingOk = activeShipping.length === 0 || activeShipping.some((shipping) => shippingTags.includes(shipping));
+      const colorOk = activeColors.length === 0 || activeColors.includes(card.dataset.color);
+      const priceOk = Number(card.dataset.price) <= selectedMaxPrice;
+      const visible = materialOk && shippingOk && colorOk && priceOk;
       card.style.display = visible ? "" : "none";
     });
   }
 
   checks.forEach((check) => check.addEventListener("change", applyFilters));
+  shippingChecks.forEach((check) => check.addEventListener("change", applyFilters));
+  colorButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      button.classList.toggle("is-selected");
+      applyFilters();
+    });
+  });
+  if (priceRange) {
+    priceRange.addEventListener("input", () => {
+      updatePriceLabel();
+      applyFilters();
+    });
+  }
+
   clear.addEventListener("click", () => {
     checks.forEach((check) => { check.checked = false; });
+    shippingChecks.forEach((check) => { check.checked = false; });
+    colorButtons.forEach((button) => button.classList.remove("is-selected"));
+    if (priceRange) priceRange.value = priceRange.max;
+    updatePriceLabel();
     applyFilters();
   });
 
   sort.addEventListener("change", () => {
     const grid = document.getElementById("catalog-products");
     const cards = [...grid.children];
+    if (sort.selectedIndex === 0) cards.sort((a, b) => Number(a.dataset.index) - Number(b.dataset.index));
     if (sort.value === "Menor precio") cards.sort((a, b) => Number(a.dataset.price) - Number(b.dataset.price));
     if (sort.value === "Mayor precio") cards.sort((a, b) => Number(b.dataset.price) - Number(a.dataset.price));
-    if (sort.value === "Mejor valorados") cards.reverse();
+    if (sort.value === "Mejor valorados") cards.sort((a, b) => Number(b.dataset.rating) - Number(a.dataset.rating));
     cards.forEach((card) => grid.appendChild(card));
   });
+
+  updatePriceLabel();
 }
 
 function setupSearch() {

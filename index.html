@@ -64,24 +64,6 @@
           </div>
         </section>
 
-        <section class="shell quick-categories" aria-label="Accesos de la beta">
-          <button class="category-tile" type="button" data-nav="category">
-            <span class="tile-icon"><span class="icon" data-icon="plant"></span></span>
-            <span><strong>Catálogo beta</strong><small>Decoración disponible</small></span>
-            <span class="tile-arrow"><span class="icon" data-icon="chevron-right"></span></span>
-          </button>
-          <button class="category-tile" type="button" data-nav="product">
-            <span class="tile-icon"><span class="icon" data-icon="sofa"></span></span>
-            <span><strong>Producto demo</strong><small>Silla decorativa</small></span>
-            <span class="tile-arrow"><span class="icon" data-icon="chevron-right"></span></span>
-          </button>
-          <button class="category-tile" type="button" data-nav="cart">
-            <span class="tile-icon"><span class="icon" data-icon="cart"></span></span>
-            <span><strong>Carrito</strong><small>Checkout optimizado</small></span>
-            <span class="tile-arrow"><span class="icon" data-icon="chevron-right"></span></span>
-          </button>
-        </section>
-
         <section class="shell home-products">
           <div class="section-heading">
             <h2>Los más vendidos</h2>
@@ -173,8 +155,8 @@
             </div>
             <div class="filter-group">
               <button class="filter-title" type="button">Precio <span class="icon" data-icon="chevron-up"></span></button>
-              <div class="range-track"><span></span></div>
-              <div class="range-values"><span>$10.000</span><span>$250.000+</span></div>
+              <input class="price-range" id="price-filter" type="range" min="10000" max="250000" step="10000" value="250000" aria-label="Precio maximo" />
+              <div class="range-values"><span>$10.000</span><span id="price-current">$250.000+</span></div>
             </div>
             <div class="filter-group">
               <h3>Material</h3>
@@ -188,18 +170,18 @@
             <div class="filter-group">
               <h3>Color</h3>
               <div class="swatches">
-                <button class="swatch teal" type="button" aria-label="Verde petróleo"></button>
-                <button class="swatch coral" type="button" aria-label="Coral"></button>
-                <button class="swatch olive" type="button" aria-label="Verde oliva"></button>
-                <button class="swatch stone" type="button" aria-label="Piedra"></button>
-                <button class="swatch white" type="button" aria-label="Blanco"></button>
+                <button class="swatch teal" type="button" data-color="teal" aria-label="Verde petróleo"></button>
+                <button class="swatch coral" type="button" data-color="coral" aria-label="Coral"></button>
+                <button class="swatch olive" type="button" data-color="olive" aria-label="Verde oliva"></button>
+                <button class="swatch stone" type="button" data-color="stone" aria-label="Piedra"></button>
+                <button class="swatch white" type="button" data-color="white" aria-label="Blanco"></button>
               </div>
               <button class="more-link" type="button">Ver más +</button>
             </div>
             <div class="filter-group">
               <h3>Envío</h3>
-              <label><input type="checkbox" /> Envío rápido <span>(198)</span></label>
-              <label><input type="checkbox" /> Envío gratis <span>(112)</span></label>
+              <label><input type="checkbox" data-shipping="fast" /> Envío rápido <span>(198)</span></label>
+              <label><input type="checkbox" data-shipping="free" /> Envío gratis <span>(112)</span></label>
             </div>
           </aside>
 
