@@ -37,57 +37,30 @@ const money = new Intl.NumberFormat("es-CO", {
   maximumFractionDigits: 0
 });
 
-const homeProducts = [
-  { id: "plant", name: "Maceta decorativa", detail: "Cemento gris", price: 45900, rating: 126, image: "assets/product-plant.png" },
-  { id: "box", name: "Caja organizadora", detail: "Con tapa", price: 39900, rating: 96, image: "assets/product-box.png" },
-  { id: "board", name: "Tabla de cortar", detail: "Bambú", price: 29900, rating: 84, image: "assets/product-board.png" },
-  { id: "blender", name: "Licuadora 1.5 L", detail: "400W", price: 189900, rating: 210, image: "assets/product-blender.png" },
-  { id: "towels", name: "Set x 3 toallas", detail: "Algodón premium", price: 49900, rating: 157, image: "assets/product-towels.png" },
-  { id: "shelf", name: "Estante organizador", detail: "3 niveles", price: 119900, rating: 73, image: "assets/product-shelf.png" }
-];
+const betaProducts = [
+  { id: "plant-pot", name: "Maceta palma", detail: "ceramica texturizada", price: 84900, rating: 128, image: "assets/beta-plant-pot.png", material: "ceramica", color: "stone", shipping: ["fast", "free"], badge: "Nuevo" },
+  { id: "storage-box", name: "Caja organizadora", detail: "tela beige con tapa", price: 59900, rating: 96, image: "assets/beta-storage-box.png", material: "textil", color: "stone", shipping: ["fast"] },
+  { id: "cutting-boards", name: "Set tablas redondas", detail: "bambu natural", price: 69900, rating: 84, image: "assets/beta-cutting-boards.png", material: "madera", color: "olive", shipping: ["free"] },
+  { id: "blender", name: "Licuadora acero", detail: "jarra de vidrio 1.5 L", price: 189900, rating: 210, image: "assets/beta-blender.png", material: "vidrio", color: "white", shipping: ["fast", "free"], badge: "Top" },
+  { id: "towels", name: "Set x 3 toallas", detail: "algodon tonos neutros", price: 79900, oldPrice: 89900, rating: 157, image: "assets/beta-towels.png", material: "textil", color: "olive", shipping: ["fast"], badge: "-10%", sale: true },
+  { id: "shelf", name: "Estante organizador", detail: "3 niveles madera y metal", price: 159900, rating: 73, image: "assets/beta-shelf.png", material: "metal", color: "stone", shipping: ["free"] },
+  { id: "round-mirror", name: "Espejo redondo", detail: "marco madera natural", price: 139900, rating: 64, image: "assets/beta-round-mirror.png", material: "madera", color: "olive", shipping: ["fast", "free"] },
+  { id: "ceramic-sculpture", name: "Figura abstracta", detail: "ceramica arena", price: 54900, rating: 71, image: "assets/beta-ceramic-sculpture.png", material: "ceramica", color: "white", shipping: ["fast"], badge: "Nuevo" },
+  { id: "woven-basket", name: "Canasta tejida", detail: "fibra natural con asas", price: 69900, rating: 45, image: "assets/beta-woven-basket.png", material: "textil", color: "coral", shipping: ["free"] },
+  { id: "table-lamp", name: "Lampara de mesa", detail: "ceramica y lino beige", price: 129900, oldPrice: 149900, rating: 56, image: "assets/beta-table-lamp.png", material: "ceramica", color: "stone", shipping: ["fast", "free"], badge: "-13%", sale: true }
+].map((product, index) => ({ ...product, index }));
 
-const catalogProducts = [
-  { id: "vase", name: "Florero cerámico", detail: "lineal beige", price: 49900, rating: 128, image: "assets/deco-vase.png", material: "ceramica" },
-  { id: "candle", name: "Vela aromática en", detail: "frasco ámbar", price: 34900, rating: 96, image: "assets/deco-candle.png", badge: "Nuevo", material: "vidrio" },
-  { id: "frame", name: "Marco de fotos", detail: "madera natural", price: 29900, rating: 76, image: "assets/deco-frame.png", material: "madera" },
-  { id: "plant2", name: "Maceta decorativa", detail: "con textura", price: 45900, rating: 112, image: "assets/deco-plant.png", material: "ceramica" },
-  { id: "mirror", name: "Espejo redondo", detail: "borde madera", price: 89900, rating: 64, image: "assets/deco-mirror.png", material: "madera" },
-  { id: "tray", name: "Bandeja decorativa", detail: "mármol sintético", price: 59900, oldPrice: 69900, rating: 88, image: "assets/deco-tray.png", badge: "-15%", sale: true, material: "ceramica" },
-  { id: "candlesticks", name: "Set 2 portavelas", detail: "metálicos dorados", price: 39900, rating: 53, image: "assets/deco-candlesticks.png", material: "metal" },
-  { id: "figure", name: "Figura decorativa", detail: "cerámica abstracta", price: 54900, rating: 71, image: "assets/deco-figure.png", badge: "Nuevo", material: "ceramica" },
-  { id: "basket", name: "Canasta tejida", detail: "multifuncional", price: 69900, rating: 45, image: "assets/deco-basket.png", material: "textil" },
-  { id: "clock", name: "Reloj de pared", detail: "minimalista", price: 62900, oldPrice: 69900, rating: 37, image: "assets/deco-clock.png", badge: "-10%", sale: true, material: "madera" }
-];
+const homeProducts = betaProducts.slice(0, 6);
+const catalogProducts = betaProducts;
+const relatedProducts = betaProducts.slice(6);
 
-const catalogProductFilters = {
-  vase: { color: "stone", shipping: ["fast", "free"] },
-  candle: { color: "coral", shipping: ["fast"] },
-  frame: { color: "olive", shipping: ["free"] },
-  plant2: { color: "teal", shipping: ["fast"] },
-  mirror: { color: "stone", shipping: ["free"] },
-  tray: { color: "white", shipping: ["fast", "free"] },
-  candlesticks: { color: "coral", shipping: ["fast"] },
-  figure: { color: "teal", shipping: ["fast"] },
-  basket: { color: "olive", shipping: ["free"] },
-  clock: { color: "white", shipping: ["fast", "free"] }
-};
-
-catalogProducts.forEach((product, index) => {
-  Object.assign(product, { index }, catalogProductFilters[product.id]);
-});
-
-const relatedProducts = [
-  { id: "armchair", name: "Poltrona escandinava", detail: "Lino gris", price: 519900, rating: 96, image: "assets/related-armchair.png" },
-  { id: "side-table", name: "Mesa auxiliar", detail: "madera clara", price: 329900, rating: 74, image: "assets/related-table.png" },
-  { id: "coffee-table", name: "Mesa de centro", detail: "redonda", price: 379900, rating: 118, image: "assets/related-coffee.png" },
-  { id: "lamp", name: "Lámpara de mesa", detail: "cerámica beige", price: 189900, rating: 56, image: "assets/related-lamp.png" }
-];
-
-let cartItems = [
-  { id: "plant", name: "Maceta decorativa cemento gris", price: 45900, qty: 1, image: "assets/product-plant.png" },
-  { id: "box", name: "Caja organizadora con tapa", price: 39900, qty: 2, image: "assets/product-box.png" },
-  { id: "towels", name: "Set x 3 toallas algodón premium", price: 49900, qty: 1, image: "assets/product-towels.png" }
-];
+let cartItems = betaProducts.slice(0, 3).map((product, index) => ({
+  id: product.id,
+  name: `${product.name} ${product.detail}`,
+  price: product.price,
+  qty: index === 1 ? 2 : 1,
+  image: product.image
+}));
 
 let currentShipping = 9900;
 let productQty = 1;
@@ -212,7 +185,7 @@ function productFromId(id) {
 }
 
 function addProduct(id, qty = 1) {
-  const source = productFromId(id) || { id: "chair", name: "Silla decorativa Nórdica Lino Beige", price: 459900, image: "assets/chair-thumb-1.png" };
+  const source = productFromId(id) || betaProducts[0];
   const existing = cartItems.find((item) => item.id === source.id);
   if (existing) {
     existing.qty += qty;
@@ -247,7 +220,7 @@ function setupCartInteractions() {
     }
 
     if (event.target.closest(".add-chair")) {
-      addProduct("chair", productQty);
+      addProduct("plant-pot", productQty);
       return;
     }
 
