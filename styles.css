@@ -2255,9 +2255,43 @@ img {
     margin-right: 12px;
   }
 
+  .hero-copy h1 {
+    font-size: 31px;
+  }
+
+  .hero-copy p {
+    font-size: 15px;
+  }
+
+  .catalog-toolbar {
+    height: auto;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .catalog-toolbar label {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .catalog-toolbar select {
+    min-width: 0;
+    width: 178px;
+  }
+
+  .filters {
+    min-height: 0;
+    padding: 14px;
+  }
+
   .catalog-grid,
   .cards-row {
     grid-template-columns: 1fr;
+  }
+
+  .product-card img,
+  .catalog-grid .product-card img {
+    height: 220px;
   }
 
   .hero-actions,
